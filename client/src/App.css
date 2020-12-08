@@ -1,0 +1,30 @@
+body{
+  margin: 0;
+  padding: 0cm;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.App{
+  width: 100vw;
+  height: 100vh;  
+  margin: auto;
+  display: flex;
+  overflow-x: scroll;
+}
+.nav{
+  width: 300px;
+  margin-left: 10px;
+}
+.d-flex{
+  display: flex;
+}
+.mr-auto{
+  margin: auto;
+}
+.w-100{
+  width: 100%;
+}
+.m-10{
+  margin: 10px;
+}
+
