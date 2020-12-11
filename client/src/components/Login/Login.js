@@ -21,7 +21,7 @@ const Login = () => {
         pw,
       })
       .then(function (response) {
-        console.log(response.data.info);
+        console.log(response.data);
         localStorage.setItem("token", response.data.token);
         window.location.reload();
       })

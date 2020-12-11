@@ -1,8 +1,8 @@
 import "./App.css";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Login from "./components/Auth/login";
-import Main from "./components/View/App";
-import Singup from "./components/Auth/Register";
+import Login from "./components/Login/Login";
+import Homepage from "./containers/Homepage/App";
+import Singup from "./components/Sigup/Sigup";
 
 //De su dung duy nhat 1 socket thi phai truyen qua props, thay vi vay thi co the dung context de lay luon cai socket do dung contextAPI
 
@@ -13,7 +13,7 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            {!check ? <Login /> : <Main />}
+            {!check ? <Login /> : <Homepage />}
           </Route>
           <Route exact path="/singup" component={Singup} />
         </Switch>

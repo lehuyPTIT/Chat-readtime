@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
-import Avatar from "../User/Avatar";
+import Header from "../../components/Header/Header";
+import Online from "../../components/Online/Index";
+import ChatList from "../../components/Chatlist";
 import { useSocket } from "../../use-socket";
 import { SocketContext } from "../../socket-context";
-
+import TopChat from "../../components/TopChat";
+import MessageList from "../Message/MessageList";
 import { getApi } from "../../Api";
 
 export default function App() {
-  const socket = useSocket();
-
+  // const socket = useSocket();
+  const socket = "";
   const [profile, setProfile] = useState();
+  const [userActive, setActive] = useState();
+
   useEffect(async () => {
-    console.log(socket.id, "client");
     const res = await getApi("http://localhost:9999/api/profile");
     if (res.data && res.data.data) {
       setProfile(res.data.data);
@@ -25,20 +29,21 @@ export default function App() {
   const sendMessage = () => {
     socket.emit("message-client", { message: "socket in App component" });
   };
+  console.log(userActive, "userActive");
   return (
-    <SocketContext.Provider value={{ socket, profile }}>
+    <SocketContext.Provider value={{ socket, profile, setActive }}>
       <div className="App">
         <div className="nav">
-          <Avatar />
-        </div>
-        <div className="list-mes">
-          <div></div>
-          <div>
-            <input type="text" />
-            <button onClick={sendMessage}>Send</button>
+          <Header />
+          <Online className="m-30" />
+          <div className="over-scroll">
+            <ChatList />
           </div>
         </div>
-        <div className="list-friends">list</div>
+        <div className="list-message">
+          <TopChat />
+          <MessageList />
+        </div>
       </div>
     </SocketContext.Provider>
   );

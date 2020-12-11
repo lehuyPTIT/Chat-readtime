@@ -20,6 +20,7 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(morgan("tiny"));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 app.post("/sigup", AuthControllers.sigup);
 app.use("/api", Middlewares.checkLogin, authRouter);
 

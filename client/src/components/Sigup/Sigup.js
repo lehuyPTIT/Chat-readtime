@@ -1,8 +1,8 @@
 import { useState } from "react";
-import "./Login.css";
+import "./Sigup.css";
 import axios from "axios";
 
-const Register = () => {
+const Sigup = () => {
   const [email, setEmail] = useState("");
   const [pw, setPw] = useState("");
   const [fullname, setFullname] = useState("");
@@ -90,4 +90,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default Sigup;

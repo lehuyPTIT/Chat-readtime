@@ -1,0 +1,11 @@
+#chat-message-list {
+    grid-area: chat-message-list;
+    display: flex;
+    flex-direction: column-reverse;
+    padding: 0 20px;
+    height: 100%;
+    overflow-y: scroll;
+}
+#chat-message-list::-webkit-scrollbar{
+    display: none;
+}
