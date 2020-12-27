@@ -6,43 +6,51 @@ import { useSocket } from "../../use-socket";
 import { SocketContext } from "../../socket-context";
 import TopChat from "../../components/TopChat";
 import MessageList from "../Message/MessageList";
-import { getApi } from "../../Api";
+import SendMessage from "../../components/SendMessage/SendMessage";
+import { getApi, getListMessApi } from "../../Api";
 
 export default function App() {
-  // const socket = useSocket();
-  const socket = "";
+  const socket = useSocket();
   const [profile, setProfile] = useState();
   const [userActive, setActive] = useState();
+  const [listMess, setListMess] = useState();
 
-  useEffect(async () => {
-    const res = await getApi("http://localhost:9999/api/profile");
-    if (res.data && res.data.data) {
-      setProfile(res.data.data);
+  useEffect(() => {
+    async function fetchData() {
+      // You can await here
+      const res = await getApi(`http://localhost:9999/api/profile`);
+      if (res.data && res.data.data) {
+        setProfile(res.data.data);
+      }
     }
-    socket.on("list-user", (data) => {
-      console.log(data);
-    });
-    socket.on("server-message", (data) => {
-      console.log(data);
-    });
+    fetchData();
   }, []);
-  const sendMessage = () => {
-    socket.emit("message-client", { message: "socket in App component" });
-  };
-  console.log(userActive, "userActive");
+  useEffect(async () => {
+    async function fetchData() {
+      // You can await here
+      const res = await getListMessApi(
+        `http://localhost:9999/api/getListMess/${userActive}`
+      );
+      if (res.data && res.data.data) {
+        setListMess(res.data.data);
+      }
+    }
+    fetchData();
+  }, [userActive]);
   return (
-    <SocketContext.Provider value={{ socket, profile, setActive }}>
+    <SocketContext.Provider value={{ socket, profile, userActive, setActive }}>
       <div className="App">
         <div className="nav">
           <Header />
-          <Online className="m-30" />
+          <Online />
           <div className="over-scroll">
-            <ChatList />
+            <ChatList profile={profile} />
           </div>
         </div>
         <div className="list-message">
           <TopChat />
           <MessageList />
+          <SendMessage />
         </div>
       </div>
     </SocketContext.Provider>

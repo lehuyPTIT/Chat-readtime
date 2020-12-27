@@ -8,7 +8,6 @@ body{
   margin: auto;
   display: flex;
   overflow-x: scroll;
-  /* background-color: tomato; */
   border-radius: 5px;
   box-shadow: 1px 1px 1px #AAA;
   margin-top: 50px;
@@ -23,20 +22,21 @@ body{
   overflow: hidden;
 }
 .nav{
-  width: 28%;
+  width: 30%;
   background-color: #54B1D2;
-  padding: 0 30px;
   height: 100%;
 }
 .over-scroll{
   height: 100%;
+  width: 100%;
   overflow-y: scroll;
 }
 .over-scroll::-webkit-scrollbar{
   display:none;
 }
+
 .list-message{
-  width: 72%;
+  width: 70%;
 }
 .d-flex{
   display: flex;
@@ -65,4 +65,7 @@ body{
   position: fixed;
   bottom: auto;
   top:200px;
+}
+.active{
+  background-color: #2F9AC0;
 }

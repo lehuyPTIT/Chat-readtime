@@ -1,0 +1,15 @@
+.send-message{
+    display: flex;
+    margin-left:10px
+}
+.send-message input{
+    width: 100%;
+    outline: none;
+    box-shadow: 0px  0px 2px 1px #ffffff;
+    padding-left:10px;
+}
+.send-message button{
+    margin-top:0;
+    width: 50px;
+    background-color: white;
+}

@@ -6,6 +6,7 @@ const bodyParser = require("body-parser");
 const morgan = require("morgan");
 const io = require("socket.io")(server);
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
 
 require("./connect-mongo");
 require("dotenv").config();
@@ -22,15 +23,24 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 app.post("/sigup", AuthControllers.sigup);
+app.post("/login", AuthControllers.login);
 app.use("/api", Middlewares.checkLogin, authRouter);
 
 let users = [];
-let custom_id = 1;
-io.use(async (socket, next) => {
-  let token = socket.handshake.query.auth;
-
-  next(null, true);
+io.use((socket, next) => {
+  const token = socket.handshake.auth.token;
+  jwt.verify(token, "code", function (err, decoded) {
+    if (err) {
+      return res.send({ message: err });
+    }
+    if (!decoded) {
+      return res.send({ message: "Athouthezion" });
+    } else {
+      socket.userId = decoded.sub;
+      next();
+    }
+  });
+  next();
 });
-
-require("./controllers/socket")(io, users);
+require("./socket")(io, users);
 server.listen(PORT, () => console.log("app listen " + PORT));

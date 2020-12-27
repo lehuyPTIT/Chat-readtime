@@ -8,6 +8,9 @@ export function useSocket() {
     () =>
       io(socketURL, {
         transports: ["websocket"],
+        auth: {
+          token: localStorage.getItem("token"),
+        },
       }),
     []
   );

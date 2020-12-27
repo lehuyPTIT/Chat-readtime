@@ -16,7 +16,7 @@ const Login = () => {
   function handleSubmit(event) {
     console.log(email, pw);
     axios
-      .post("http://localhost:9999/api/login", {
+      .post("http://localhost:9999/login", {
         email,
         pw,
       })

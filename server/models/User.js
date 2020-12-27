@@ -6,16 +6,9 @@ const userSchema = new Schema({
   email: { type: String, unique: true },
   password: { type: String, default: "", unique: false },
   userImage: { type: String, default: "https://picsum.photos/200/300" },
-  request: [
-    {
-      userId: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
-    },
-  ],
-  friendsList: [
-    {
-      friendId: { type: mongoose.Schema.Types.ObjectId, ref: "users" },
-    },
-  ],
+  request: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
+  sendRequest: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
+  friendsList: [{ type: mongoose.Schema.Types.ObjectId, ref: "users" }],
 });
 
 const User = new mongoose.model("users", userSchema);

@@ -6,6 +6,7 @@ import SingleOnline from "./SingelOnline";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   root: {
+    padding: "30px",
     "& > *": {
       margin: "1px 0",
     },
@@ -18,7 +19,7 @@ export default function Index() {
     // dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 6,
+    slidesToShow: 4,
     slidesToScroll: 1,
   };
   return (

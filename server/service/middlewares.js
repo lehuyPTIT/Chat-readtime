@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 
 const checkLogin = (req, res, next) => {
   var host = req.headers["authorization"];
+
   jwt.verify(host, "code", function (err, decoded) {
     if (err) {
       return res.send({ message: err });

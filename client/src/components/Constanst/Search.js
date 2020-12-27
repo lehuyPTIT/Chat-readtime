@@ -1,13 +1,8 @@
-import React from "react";
+import React, { useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Paper from "@material-ui/core/Paper";
 import InputBase from "@material-ui/core/InputBase";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
-import DirectionsIcon from "@material-ui/icons/Directions";
-
 const useStyles = makeStyles((theme) => ({
   root: {
     padding: "2px 4px",
@@ -30,20 +25,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomizedInputBase() {
+export default function CustomizedInputBase(props) {
   const classes = useStyles();
-
+  const { onSubmit } = props;
+  const typingTimeoutRef = useRef(null);
+  const handleOnchane = (e) => {
+    if (!onSubmit) return;
+    if (typingTimeoutRef.current) {
+      clearTimeout(typingTimeoutRef.current);
+    }
+    typingTimeoutRef.current = setTimeout(() => {
+      onSubmit(e.target.value);
+    }, 1000);
+  };
   return (
     <Paper component="form" className={classes.root}>
-      <InputBase className={classes.input} placeholder="Search a friend" />
-      {/* <Divider className={classes.divider} orientation="vertical" /> */}
-      <IconButton
-        type="button"
-        className={classes.iconButton}
-        aria-label="search"
-      >
-        <SearchIcon />
-      </IconButton>
+      <InputBase
+        className={classes.input}
+        placeholder="Search a friend"
+        onChange={handleOnchane}
+      />
+      <SearchIcon className={classes.iconButton} />
     </Paper>
   );
 }
