@@ -65,7 +65,6 @@ export default function Addfriend() {
   }, [socket]);
 
   const onSearch = async (name) => {
-    console.log("vvvv");
     const res = await searchApi(
       `http://localhost:9999/api/search?name=${name}`
     );
@@ -92,6 +91,11 @@ export default function Addfriend() {
     setArr([...ArrayAdd, userId]);
     socket.emit("sendRequest", userId);
   };
+  const onAcceptFriend = (userId) => {
+    setArr([...ArrayAdd, userId]);
+    socket.emit("accept-friend", userId);
+    console.log(userId, "idididid");
+  };
   const handleClose = () => {
     setOpen(false);
   };
@@ -99,7 +103,7 @@ export default function Addfriend() {
   return (
     <div className="add-friends">
       <Badge
-        badgeContent={profile ? profile.request.length : 0}
+        badgeContent={request ? request.length : 0}
         color="secondary"
         onClick={handleClickOpen}
       >
@@ -126,7 +130,7 @@ export default function Addfriend() {
                   src="/static/images/avatar/1.jpg"
                 />
                 <ListItemText id={labelId} primary={value.fullname} />
-                {value.check !== 3 && (
+                {value.check === 0 && (
                   <ListItemIcon>
                     <Button
                       variant="contained"
@@ -136,13 +140,42 @@ export default function Addfriend() {
                       }
                       onClick={() => onSendRequestFriend(value._id)}
                     >
+                      Thêm bạn bè
+                    </Button>
+                  </ListItemIcon>
+                )}
+                {/* {value.check === 1 && (
+                  <ListItemIcon>
+                    <Button variant="contained" color="primary" disabled>
+                      Đã gửi yêu cầu kết bạn
+                    </Button>
+                  </ListItemIcon>
+                )} */}
+                {value.check === 2 && (
+                  <ListItemIcon>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      disabled={
+                        ArrayAdd.indexOf(value._id) === -1 ? false : true
+                      }
+                      onClick={() => onAcceptFriend(value._id)}
+                    >
                       {ArrayAdd.indexOf(value._id) === -1
-                        ? value.check === 1
-                          ? "Dong y ket ban"
-                          : "ADD FRIENDS"
-                        : value.check === 2
-                        ? "Chap nhan ket ban"
-                        : "Da gui loi moi ket ban"}
+                        ? "Đồng ý kết bạn"
+                        : "Da chap nhan ket ban"}
+                    </Button>
+                  </ListItemIcon>
+                )}
+                {value.check === 3 && (
+                  <ListItemIcon>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      disabled
+                      onClick={() => onAcceptFriend(value._id)}
+                    >
+                      Da gui loi moi ket ban
                     </Button>
                   </ListItemIcon>
                 )}
@@ -164,20 +197,19 @@ export default function Addfriend() {
                     alt="Remy Sharp"
                     src="/static/images/avatar/1.jpg"
                   />
-                  <ListItemText
-                    id={labelId}
-                    primary={`List item ${value + 1}`}
-                  />
+                  <ListItemText id={labelId} primary={value.fullname} />
                   <ListItemIcon>
                     <Button
                       variant="contained"
                       color="primary"
-                      disabled={ArrayAdd.indexOf(index) === -1 ? false : true}
-                      onClick={() => onAddFriend(index)}
+                      disabled={
+                        ArrayAdd.indexOf(value._id) === -1 ? false : true
+                      }
+                      onClick={() => onAcceptFriend(value._id)}
                     >
-                      {ArrayAdd.indexOf(index) === -1
-                        ? "ADD FRIENS"
-                        : "Da chap nhan ket ban"}
+                      {ArrayAdd.indexOf(value._id) === -1
+                        ? "Đồng ý kết bạn"
+                        : "Đã chấp nhận kết bạn"}
                     </Button>
                   </ListItemIcon>
                 </ListItem>

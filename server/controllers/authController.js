@@ -9,7 +9,6 @@ const login = (req, res, next) => {
   User.findOne({ email: email, password: pw })
     .then((user) => {
       if (user) {
-        console.log(user);
         token = jwt.sign(
           { iss: user.name, sub: user._id, iat: new Date().getTime() },
           "code"
@@ -31,7 +30,6 @@ const getProfile = (req, res) => {
   User.findById(req.userId)
     .populate("friendsList")
     .then((user) => {
-      console.log(user);
       if (user) {
         return res.status(200).json({ data: user });
       }
@@ -75,9 +73,10 @@ const search = (req, res, next) => {
 
     data = result.map((user) => {
       let check = 0;
-      if (user.request.indexOf(req.userId) !== -1) check = 1;
+      if (user.friendsList.indexOf(req.userId) !== -1) check = 1;
       if (user.sendRequest.indexOf(req.userId) !== -1) check = 2;
-      if (user.friendsList.indexOf(req.userId) !== -1) check = 3;
+      if (user.request.indexOf(req.userId) !== -1) check = 3;
+
       return { _id: user._id, fullname: user.fullname, check: check };
     });
     return res.status(200).json({ data: data, success: true });
@@ -89,15 +88,20 @@ const getListMess = (req, res, next) => {
   Message.find({
     $or: [
       {
-        sender: "5fe2c0f1cb97d22890a46f60",
-        receiver: "5fe2c0f1cb97d22890a46f60",
+        sender: req.userId,
+        receiver: id,
       },
       {
-        sender: "5fe2c0f1cb97d22890a46f60",
-        receiver: "5fe2b04ecb97d22890a46f5f",
+        sender: id,
+        receiver: req.userId,
       },
     ],
-  }).exec((err, message) => {});
+  })
+    .limit(-20)
+    .exec((err, message) => {
+      if (err) return res.status(500).json({ message: "Co loi xay ra" });
+      return res.status(200).json({ data: message, success: true });
+    });
 };
 const addFriend = (req, res, next) => {
   const id = req.params.id;

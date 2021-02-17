@@ -1,17 +1,16 @@
 import React, { useEffect } from "react";
 import Message from "../../components/Message/Message";
 import "./MessageList.css";
-import Data from "./Data";
 let messageItems = null;
-const MessageList = ({ conversationId, getMessagesForConversation }) => {
-  let messages = Data;
+const MessageList = ({ listMess, userActive }) => {
+  let messages = listMess;
 
   if (messages && messages.length > 0) {
     messageItems = messages.map((message, index) => {
       return (
         <Message
           key={index}
-          isMyMessage={message.isMyMessage}
+          isMyMessage={message.sender === userActive ? false : true}
           message={message}
         />
       );

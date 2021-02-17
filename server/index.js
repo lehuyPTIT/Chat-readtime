@@ -40,7 +40,7 @@ io.use((socket, next) => {
       next();
     }
   });
-  next();
 });
 require("./socket")(io, users);
+
 server.listen(PORT, () => console.log("app listen " + PORT));

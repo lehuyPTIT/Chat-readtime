@@ -12,12 +12,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function (props) {
   const classes = useStyles();
-  const { profile } = props;
+  const { profile, friends } = props;
   return (
     <div className={classes.root}>
-      {profile &&
-        profile.friendsList &&
-        profile.friendsList.map((user) => <SingleChat user={user} />)}
+      {friends &&
+        friends.map((user, index) => <SingleChat user={user} key={index} />)}
     </div>
   );
 }

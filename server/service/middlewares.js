@@ -10,9 +10,7 @@ const checkLogin = (req, res, next) => {
     if (!decoded) {
       return res.send({ message: "Athouthezion" });
     } else {
-      console.log(decoded);
       req.userId = decoded.sub;
-      console.log(req.userId, "haha");
       next();
     }
   });

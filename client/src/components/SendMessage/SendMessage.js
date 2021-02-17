@@ -1,13 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 import "./SendMessage.css";
 import SendIcon from "@material-ui/icons/Send";
 
-export default function SendMessage() {
+export default function SendMessage(props) {
+  const { onSendMessage } = props;
+  const [message, setMessage] = useState("");
+  const handleOnchange = (e) => {
+    setMessage(e.target.value);
+  };
+  const sendMessage = () => {
+    onSendMessage(message);
+    setMessage("");
+  };
   return (
     <div className="send-message">
-      <input type="text" />
-      <button type="button">
-        <SendIcon color="primary" />
+      <input type="text" onChange={handleOnchange} value={message || ""} />
+      <button>
+        <SendIcon color="primary" onClick={sendMessage} />
       </button>
     </div>
   );

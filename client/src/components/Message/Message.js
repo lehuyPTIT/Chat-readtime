@@ -20,8 +20,8 @@ const Message = ({ isMyMessage, message }) => {
     <div className={messageClass}>
       <div className="message-content">
         {imageThumbnail}
-        <div className="message-text">{message.text}</div>
-        <div className="message-time">{message.time}</div>
+        <div className="message-text">{message.message}</div>
+        <div className="message-time">{message.createdAt.toString()}</div>
       </div>
     </div>
   );
