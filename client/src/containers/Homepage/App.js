@@ -9,6 +9,8 @@ import MessageList from "../Message/MessageList";
 import SendMessage from "../../components/SendMessage/SendMessage";
 import { getApi, getListMessApi } from "../../Api";
 
+import CircularProgress from "@material-ui/core/CircularProgress";
+
 export default function App() {
   const socket = useSocket();
   const [profile, setProfile] = useState();
@@ -59,7 +61,6 @@ export default function App() {
     socket.emit("new-message", newMessage);
     setListMess((listMess) => [newMessage, ...listMess]);
   };
-  console.log("render");
   return (
     <SocketContext.Provider value={{ socket, profile, userActive, setActive }}>
       <div className="App">

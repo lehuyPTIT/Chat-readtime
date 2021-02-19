@@ -97,7 +97,8 @@ const getListMess = (req, res, next) => {
       },
     ],
   })
-    .limit(-20)
+    .sort({'createdAt':-1})
+    .limit(10)
     .exec((err, message) => {
       if (err) return res.status(500).json({ message: "Co loi xay ra" });
       return res.status(200).json({ data: message, success: true });

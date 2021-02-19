@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-
+import moment from "moment";
 import "./Message.css";
 
 const Message = ({ isMyMessage, message }) => {
@@ -21,7 +21,7 @@ const Message = ({ isMyMessage, message }) => {
       <div className="message-content">
         {imageThumbnail}
         <div className="message-text">{message.message}</div>
-        <div className="message-time">{message.createdAt.toString()}</div>
+        <div className="message-time">{moment(message.createdAt).format('LT')}</div>
       </div>
     </div>
   );

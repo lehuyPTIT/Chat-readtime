@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         alignItems: "center",
-        height: "100px",
+        height: "60px",
         backgroundColor: "white",
         width: "100%",
         color: "black",
