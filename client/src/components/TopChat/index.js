@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         display: "flex",
         alignItems: "center",
-        height: "60px",
+        height: "8%",
         backgroundColor: "white",
         width: "100%",
         color: "black",
@@ -29,12 +29,15 @@ const useStyles = makeStyles((theme) => ({
         },
     },
 }));
-export default function () {
+export default function TopChat(props) {
     const classes = useStyles();
+    const { profileUserActive } = props;
     return (
         <div className={classes.root}>
-            <Avatar />
-            <div>le huy</div>
+            <Avatar
+                src={profileUserActive ? profileUserActive.userImage : ""}
+            />
+            <div>{profileUserActive ? profileUserActive.fullname : ""}</div>
             <div className={classes.call} style={{ marginLeft: "auto" }}>
                 <VideocamIcon />
                 <CallIcon />

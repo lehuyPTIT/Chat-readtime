@@ -1,71 +1,69 @@
-body{
+body {
   margin: 0;
   padding: 0cm;
-  font-family: 'Times New Roman', Times, serif;
+  font-family: "Times New Roman", Times, serif;
 }
 
-.App{
+.App {
   margin: auto;
   display: flex;
   overflow-x: scroll;
   border-radius: 5px;
-  box-shadow: 1px 1px 1px #AAA;
+  box-shadow: 1px 1px 1px #aaa;
   margin-top: 50px;
   color: azure;
   font-weight: 500;
-  font-family: Georgia, 'Times New Roman', Times, serif;
-  min-width: 1000px;
+  font-family: Georgia, "Times New Roman", Times, serif;
   max-width: 1000px;
-  max-height: 800px;
   width: 100%;
   height: 90vh;
   overflow: hidden;
 }
-.nav{
+.nav {
   width: 30%;
-  background-color: #54B1D2;
+  background-color: #54b1d2;
   height: 100%;
 }
-.over-scroll{
+.over-scroll {
   height: 100%;
   width: 100%;
   overflow-y: scroll;
 }
-.over-scroll::-webkit-scrollbar{
-  display:none;
+.over-scroll::-webkit-scrollbar {
+  display: none;
 }
 
-.list-message{
+.list-message {
   width: 70%;
 }
-.d-flex{
+.d-flex {
   display: flex;
 }
-.mr-auto{
+.mr-auto {
   margin: auto;
 }
-.w-100{
+.w-100 {
   width: 100%;
 }
-.m-10{
+.m-10 {
   margin: 10px;
 }
-.m-30{
+.m-30 {
   margin-top: 30px;
 }
-.full-width{
+.full-width {
   width: 90%;
-  margin: 0 auto!important;
+  margin: 0 auto !important;
 }
-.m-top-fixed{
+.m-top-fixed {
   position: fixed;
   bottom: auto;
 }
-.m-top-fixed-1{
+.m-top-fixed-1 {
   position: fixed;
   bottom: auto;
-  top:200px;
+  top: 200px;
 }
-.active{
-  background-color: #2F9AC0;
+.active {
+  background-color: #2f9ac0;
 }

@@ -14,19 +14,21 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-export default function DatePickers() {
+export default function DatePickers(props) {
     const classes = useStyles();
+    const { setBirthDay } = props;
 
     return (
         <form className={classes.container} noValidate>
             <TextField
                 id="date"
                 type="date"
-                defaultValue="2017-05-24"
+                defaultValue={props.defaultValue || "01/01/2021"}
                 className={classes.textField}
                 InputLabelProps={{
                     shrink: true,
                 }}
+                onChange={(e) => setBirthDay(e.target.value)}
             />
         </form>
     );
