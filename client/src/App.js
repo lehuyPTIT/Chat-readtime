@@ -22,7 +22,12 @@ function App() {
                     <Route exact path="/">
                         {!check ? <Login /> : <Homepage />}
                     </Route>
-                    <Route exact path="/singup" component={Signup} />
+                    <Route exact path="/signup" component={Signup} />
+                    <Route
+                        exact
+                        path="/incall/?peer_id=100045633040933"
+                        component={Signup}
+                    />
                 </Switch>
             </Router>
         </SnackbarProvider>

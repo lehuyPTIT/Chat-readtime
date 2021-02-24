@@ -68,7 +68,9 @@ export default function Profile() {
     useEffect(() => {
         async function fetchData() {
             // You can await here
-            const res = await getProfileApi("/api/profile");
+            const res = await getProfileApi(
+                `${process.env.REACT_APP_UNSPLASH_HOST}/api/profile`
+            );
             if (res.data && res.data.data) {
                 const {
                     fullname,
@@ -116,7 +118,10 @@ export default function Profile() {
             birthDay,
             imageUpload,
         };
-        const res = await updateProfile("/api/updateProfile", user);
+        const res = await updateProfile(
+            `${process.env.REACT_APP_UNSPLASH_HOST}/api/updateProfile`,
+            user
+        );
         if (res && res.data.success) {
             enqueueSnackbar("Update profile success!");
             fetchData();

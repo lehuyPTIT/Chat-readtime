@@ -1,55 +1,45 @@
- h1,h2,h3,h4,h5,h6,label,span {
-    font-weight: 500;
-    font-family: 'Fira Sans', sans-serif;
-  }
-  
-  .navbar-light {
-    background-color: #ffffff;
-    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-  }
-  
-  .auth-wrapper {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    text-align: left;
-  }
-  
-  .auth-inner {
-    width: 450px;
-    margin: auto;
-    background: #ffffff;
-    box-shadow: 0px 14px 80px rgba(34, 35, 58, 0.2);
-    padding: 40px 55px 45px 55px;
-    border-radius: 15px;
-    transition: all .3s;
-  }
-  
-  .auth-wrapper .form-control:focus {
-    border-color: #167bff;
-    box-shadow: none;
-  }
-  
-  .auth-wrapper h3 {
-    text-align: center;
-    margin: 0;
-    line-height: 1;
-    padding-bottom: 20px;
-  }
-  
-  .custom-control-label {
-    font-weight: 400;
-  }
-  
-  .forgot-password,
-  .forgot-password a {
-    text-align: right;
-    font-size: 13px;
-    padding-top: 10px;
-    color: #7f7d7d;
-    margin: 0;
-  }
-  
-  .forgot-password a {
-    color: #167bff;
-  }
+.main {
+  overflow: scroll;
+}
+.form-login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2rem;
+}
+
+.title-login {
+  font-size: 2em;
+  margin-bottom: 70px;
+  text-align: center;
+}
+.box {
+  width: 500px;
+  height: 50px;
+  border-bottom: 1px solid white;
+  margin-bottom: 2em;
+  display: flex;
+}
+.box input {
+  width: 100%;
+  font-size: 1.5rem;
+  border: none;
+  background: none;
+  color: white;
+  margin-left: 10px;
+  padding-bottom: 20px;
+}
+.button-singin {
+  width: 7rem;
+  margin-left: auto;
+  margin-right: 3rem;
+  padding-top: 0;
+}
+.button-singin button {
+  background-color: rgb(238, 238, 226);
+  margin-top: 20px;
+}
+.button-singin button:hover {
+  background-color: rgb(212, 192, 167);
+}

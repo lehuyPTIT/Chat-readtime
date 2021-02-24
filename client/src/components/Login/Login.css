@@ -1,7 +1,7 @@
 .main {
   width: 100wh;
   height: 100vh;
-  font-size: 25px;
+
   background-image: url("../../Image/banner1.jpg");
   background-size: cover;
   color: white;
@@ -16,7 +16,7 @@
 }
 
 .title-login {
-  font-size: 1.9em;
+  font-size: 2em;
   width: 500px;
   margin-bottom: 70px;
 }
@@ -31,7 +31,7 @@
 
 .box input {
   width: 100%;
-  font-size: 30px;
+  font-size: 1.5rem;
   border: none;
   background: none;
   color: white;
@@ -60,14 +60,47 @@ input:-webkit-autofill:active {
   text-decoration: none;
   color: azure;
 }
-
+.checkbox a:hover {
+  color: aqua;
+}
 button {
   width: 100%;
   height: 50px;
   margin-top: 50px;
-  font-size: 30px;
+  font-size: 1em;
   background-color: #ff3366;
   border: none;
   border-radius: 3px;
   outline: none;
+}
+@media only screen and (max-width: 600px) {
+  .title-login {
+    font-size: 2em;
+    width: 100%;
+    margin-bottom: 70px;
+    text-align: center;
+  }
+  .box {
+    width: 100%;
+    height: 1.5rem;
+    border-bottom: 1px solid white;
+    margin-bottom: 2rem;
+    display: flex;
+  }
+  .box input {
+    width: 50%;
+    font-size: 1em;
+    border: none;
+    background: none;
+    color: white;
+    margin-left: 10px;
+    padding-bottom: 0.5em;
+  }
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-transition: "color 9999s ease-out,background-color 9999s ease-out";
+    -webkit-transition-delay: 9999s;
+  }
 }

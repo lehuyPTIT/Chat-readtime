@@ -16,7 +16,7 @@ const Login = () => {
     function handleSubmit(event) {
         console.log(email, pw);
         axios
-            .post("/login", {
+            .post(`${process.env.REACT_APP_UNSPLASH_HOST}/login`, {
                 email,
                 pw,
             })
@@ -61,7 +61,7 @@ const Login = () => {
                                 {" "}
                                 Remember password{" "}
                             </label>{" "}
-                            <a href="/#"> Forgot password </a>{" "}
+                            <a href="signup">Sign up</a>
                         </div>
                     </div>
                     <button type="submit"> Login </button>{" "}

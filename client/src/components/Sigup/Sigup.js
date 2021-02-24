@@ -29,7 +29,7 @@ const Sigup = () => {
             setErr("Password don't correct!!!");
         }
         axios
-            .post("/sigup", {
+            .post(`${process.env.REACT_APP_UNSPLASH_HOST}/sigup`, {
                 email,
                 pw,
                 fullname,
@@ -46,6 +46,11 @@ const Sigup = () => {
     }
     return (
         <div className="main">
+            <div className="button-singin">
+                <a href="/">
+                    <button>Sign in</button>
+                </a>
+            </div>
             <div className="form-login">
                 <p className="title-login"> Register Chat</p>{" "}
                 <form onSubmit={handleSubmit}>

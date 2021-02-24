@@ -5,7 +5,6 @@ import Addfriend from "../AddFriend/Addfriend";
 
 import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import { SocketContext } from "../../socket-context";
-import { searchApi } from "../../Api";
 
 import Popover from "@material-ui/core/Popover";
 import PopupState, { bindTrigger, bindPopover } from "material-ui-popup-state";

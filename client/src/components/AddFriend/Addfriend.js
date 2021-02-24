@@ -65,7 +65,9 @@ export default function Addfriend() {
     }, [socket]);
 
     const onSearch = async (name) => {
-        const res = await searchApi(`/api/search?name=${name}`);
+        const res = await searchApi(
+            `${process.env.REACT_APP_UNSPLASH_HOST}/api/search?name=${name}`
+        );
         if (res && res.data.success) {
             setDataSearch(res.data.data);
         }
@@ -73,14 +75,6 @@ export default function Addfriend() {
     const handleClickOpen = () => {
         setOpen(true);
     };
-
-    // const onhandleAddFriend = async (id) => {
-    //   const res = await addApi(`http://localhost:9999/api/addFriend/${id}`);
-    //   console.log(res.data, "Aaa");
-    //   if (res && res.data.success) {
-    //     console.log(res.data, "da them ban");
-    //   }
-    // };
 
     const onAddFriend = (index) => {
         setArr([...ArrayAdd, index]);

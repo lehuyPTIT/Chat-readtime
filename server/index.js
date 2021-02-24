@@ -16,12 +16,23 @@ const authRouter = require("./router/authRoutes");
 const Middlewares = require("./service/middlewares");
 const AuthControllers = require("./controllers/authController");
 
-app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
+app.use(
+    cors({
+        credentials: true,
+        origin: "https://chat-realtime-client.herokuapp.com",
+    })
+);
 app.use(morgan("tiny"));
-// app.use(bodyParser.json()); // for parsing application/json
-// app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(bodyParser.json({ limit: "50mb" }));
 app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.all("/", function (req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    next();
+});
+app.get("/", (req, res) => {
+    return res.send("Server running!");
+});
 app.post("/sigup", AuthControllers.sigup);
 app.post("/login", AuthControllers.login);
 app.use("/api", Middlewares.checkLogin, authRouter);

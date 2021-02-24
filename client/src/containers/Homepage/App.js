@@ -24,7 +24,9 @@ export default function App() {
     const [datasearch, setDataSearch] = React.useState([]);
     async function fetchData() {
         // You can await here
-        const res = await getProfileApi("/api/profile");
+        const res = await getProfileApi(
+            `${process.env.REACT_APP_UNSPLASH_HOST}/api/profile`
+        );
         if (res.data && res.data.data) {
             setProfile(res.data.data);
             setFriends(res.data.data.friendsList);
@@ -42,7 +44,9 @@ export default function App() {
     useEffect(() => {
         async function fetchData() {
             setLoading(true);
-            const res = await getListMessApi(`/api/getListMess/${userActive}`);
+            const res = await getListMessApi(
+                `${process.env.REACT_APP_UNSPLASH_HOST}/api/getListMess/${userActive}`
+            );
             console.log("AAAAAA");
             setLoading(false);
             if (res.data && res.data.data) {
